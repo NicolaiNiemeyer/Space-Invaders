@@ -3,14 +3,14 @@ import MovingDirection from "./movingDirection.js";
 
 export default class EnemyController {
 
-    enemyMap = [
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [2, 2, 2, 3, 3, 3, 3, 2, 2, 2],
-        [2, 2, 2, 3, 3, 3, 3, 2, 2, 2],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-      ];
+    // enemyMap = [
+    //     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    //     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    //     [2, 2, 2, 3, 3, 3, 3, 2, 2, 2],
+    //     [2, 2, 2, 3, 3, 3, 3, 2, 2, 2],
+    //     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    //     [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+    //   ];
 
     enemyRows = [];
 
@@ -139,7 +139,7 @@ export default class EnemyController {
     }
 
     createEnemies() {
-        this.enemyMap.forEach((row, rowIndex) => {
+        this.level1.forEach((row, rowIndex) => {
             this.enemyRows[rowIndex] = [];
             row.forEach((enemyNumber, enemyIndex) => {
                 if(enemyNumber > 0){
@@ -153,3 +153,30 @@ export default class EnemyController {
         return this.enemyRows.flat().some(enemy => enemy.collideWith(sprite));
     }
 }
+
+export const level1 = [
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [2, 2, 2, 3, 3, 3, 3, 2, 2, 2],
+    [2, 2, 2, 3, 3, 3, 3, 2, 2, 2],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+]
+
+export const level2 = [
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    // [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [2, 2, 2, 3, 3, 3, 3, 2, 2, 2],
+    [2, 2, 2, 3, 3, 3, 3, 2, 2, 2],
+    // [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    // [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+];
+
+export const level3 = [
+    [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [0, 2, 2, 3, 0, 0, 3, 2, 2, 0],
+    [0, 2, 2, 3, 0, 0, 3, 2, 2, 0],
+    [1, 1, 0, 0, 1, 1, 0, 0, 1, 1],
+    [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+];

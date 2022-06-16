@@ -9,8 +9,7 @@ export default class Player {
         this.velocity = velocity;
         this.bulletController = bulletController;
 
-        this.x = this.canvas.width / 2;
-        this.y = this.canvas.height - 75;
+        this.reset();
         this.width = 50;
         this.height = 48;
         this.image = new Image();
@@ -19,6 +18,11 @@ export default class Player {
         document.addEventListener("keydown", this.keydown);
         document.addEventListener("keyup", this.keyup);
 
+    }
+
+    reset() {
+        this.x = this.canvas.width / 2;
+        this.y = this.canvas.height - 75;
     }
 
     draw(ctx) {

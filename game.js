@@ -1,4 +1,4 @@
-import EnemyController from "./enemyController.js";
+import { EnemyController, level1, level2, level3 } from "./enemyController.js";
 import Player from "./player.js";
 import BulletController from "./bulletController.js";
 
@@ -8,12 +8,10 @@ const ctx = canvas.getContext("2d");
 const GAMESTATE = {
     PAUSED: 0,
     RUNNING: 1,
-    MENU: 2, 
+    MENU: 2,
+    GAMEOVER: 3, 
     NEWLEVEL: 4
 };
-
-canvas.width = 600;
-canvas.height = 600;
 
 const background = new Image();
 background.src = "assets/images/space.png";
@@ -26,6 +24,37 @@ const enemyController = new EnemyController(
     playerBulletController
     );
 const player = new Player(canvas, 3, playerBulletController);
+
+canvas.width = 600;
+canvas.height = 600;
+
+export default class Game {
+    constructor(canvas) {
+        this.canvas = canvas;
+        this.gamestate = GAMESTATE.MENU;
+        this.player = new Player(canvas, 3, playerBulletController);
+        this.enemies = []
+
+        this.levels = [level1, level2, level3];
+        this.currentLevel = 0;
+
+    }
+
+    start() {
+        if(
+            this.gamestate !== GAMESTATE.MENU &&
+            this.gamestate !== GAMESTATE.NEWLEVEL
+        )
+        return;
+        
+        this.enemies = enemyController(this, this.levels[this.currentLevel]);
+        this.player.reset();
+        this.gamestate = GAMESTATE.RUNNING;
+
+        
+    }
+}
+
 
 let isGameOver = false;
 let didWin = false;
@@ -45,9 +74,11 @@ function game() {
     
 }
 
-
+draw(ctx) {
+    [...this.enemies].forEach(object => object.draw(ctx));
+}
 function menu() {
-    
+    if(gamestate !==)
     ctx.rect(0,0,canvas.width, canvas.height);
             ctx.fillStyle = "rgba(0,0,0,1)";
             ctx.fill();
