@@ -4,7 +4,7 @@ import BulletController from "./bulletController.js";
 
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
-const music = document.getElementById("music")
+
 
 canvas.width = 600;
 canvas.height = 600;
@@ -34,7 +34,7 @@ function game() {
         player.draw(ctx);
         playerBulletController.draw(ctx);
         enemyBulletController.draw(ctx);
-        music.play();
+        
     }
     
 }
