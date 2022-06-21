@@ -5,13 +5,6 @@ import BulletController from "./bulletController.js";
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 
-const GAMESTATE = {
-    PAUSED: 0,
-    RUNNING: 1,
-    MENU: 2, 
-    NEWLEVEL: 4
-};
-
 canvas.width = 600;
 canvas.height = 600;
 
@@ -31,36 +24,18 @@ let isGameOver = false;
 let didWin = false;
 
 function game() {
-    menu();
     checkGameOver();
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
     displayGameOver();
     if (!isGameOver) {
-        enemyController.draw(ctx);
-        player.draw(ctx);
-        playerBulletController.draw(ctx);
-        enemyBulletController.draw(ctx);
-        
+    enemyController.draw(ctx);
+    player.draw(ctx);
+    playerBulletController.draw(ctx);
+    enemyBulletController.draw(ctx);
     }
     
 }
 
-
-function menu() {
-    
-    ctx.rect(0,0,canvas.width, canvas.height);
-            ctx.fillStyle = "rgba(0,0,0,1)";
-            ctx.fill();
-
-            ctx.font = "30px Arial";
-            ctx.fillStyle = "white";
-            ctx.textAlign = "center";
-            ctx.fillText(
-                "Press SPACEBAR to start", 
-                canvas.width / 2, 
-                canvas.height / 2
-            );
-}
 function displayGameOver() {
     if (isGameOver) {
         let text = didWin ? "You Win" : "Game Over";
